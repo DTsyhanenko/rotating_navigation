@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --grey: #333;
+    --dark-grey: #222;
+    --light-grey: #fafafa;
+    --coral: #ff7979;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
+    /*overflow-x means that scroll will apear only in Y-achse and not in X*/
+    background-color: var(--grey);
+    color: var(--dark-grey);
+    margin: 0;
+}
+
+.container {
+    background-color: var(--light-grey);
+    transform-origin: top left;
+    /*the important stuff here is the transform origin. It gives an point from where it will for example rotate. In this situation it will rotate from top left corner.*/
+    transition: transform 0.5s linear;
+    /*when you use transition property sometimes you need to write, what you want that gonna be in transition. For example transform - that means, transition is wrote for transform and transforming will be 0.5s long and linear*/
+    width: 100vw;
+    min-height: 100vh;
+    padding: 50px;
+}
+
+.container.show-nav {
+    transform: rotate(-20deg);
+}
+
+.circle-container {
+    position: fixed;
+    top: -100px;
+    left: -100px;
+}
+
+.circle {
+    background-color: var(--coral);
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    transition: transform 0.5s linear;
+}
+
+.container.show-nav .circle {
+    transform: rotate(-70deg);
+}
+
+.circle button {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 100px;
+    background: transparent;
+    border: 0;
+    font-size: 26px;
+    color: #fff;
+}
+
+.circle button:focus {
+    outline: none;
+}
+
+.circle button#open {
+    /*Selector here is written with id together*/
+    left: 60%;
+}
+
+.circle button#close {
+    top: 60%;
+    transform: rotate(90deg);
+    transform-origin: top left;
+
+}
+
+.container.show-nav + nav li  {
+    /*the meaning of this selector: when .container has a class .show-nav, we take tag nav and the all lis there to put them in original position*/
+    transform: translateX(0);
+    transition-delay: 0.3s;
+}
+
+nav {
+    position: fixed;
+    bottom: 40px;
+    left: 0;
+    z-index: 100;
+}
+
+nav ul {
+    list-style-type: none;
+    padding-left: 30px;
+}
+
+nav ul li {
+    text-transform: uppercase;
+    color: #fff;
+    margin: 40px 0;
+    transform: translateX(-100%);
+    transition: transform 0.4s ease-in;
+}
+
+nav ul li  i {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+nav ul li + li {
+    /*li + li means that the lis after the initial will have margin left 15px (but not the first li)*/
+    margin-left: 15px;
+    transform: translateX(-150%);
+}
+
+nav ul li + li + li {
+    /*li + li + li will give (in this situation with 3 li) the third one margin left of 30px*/
+    margin-left: 30px;
+    transform: translateX(-200%);
+}
+
+.content figure {
+    margin: 0;
+}
+
+.content img {
+    max-width: 100%;
+}
+
+.content {
+    max-width: 1000px;
+    margin: 50px auto;
+}
+
+.content h1 {
+    margin: 0;
+}
+
+.content small {
+    color: #555;
+    font-style: italic;
+}
+
+.content p {
+    color: #333;
+    line-height: 1.5;
+}
